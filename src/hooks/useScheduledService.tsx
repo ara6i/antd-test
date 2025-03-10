@@ -1,8 +1,13 @@
-import { useState } from "react";
+import { JSX, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify"; // Import toast from react-toastify
 
 const API_URL = "https://jsonplaceholder.typicode.com/posts";
+
+type BoldedOption = {
+  label: JSX.Element; // JSX to render the bolded option label
+  value: string; // The original value
+};
 
 const useScheduledService = () => {
   const options = [
@@ -14,7 +19,7 @@ const useScheduledService = () => {
   ];
 
   // Map options to bold part after "Add"
-  const boldedOptions = options.map((option) => {
+  const boldedOptions: BoldedOption[] = options.map((option) => {
     const parts = option.split("Add ");
     return {
       label: (
