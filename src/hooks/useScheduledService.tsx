@@ -5,8 +5,8 @@ import { toast } from "react-toastify"; // Import toast from react-toastify
 const API_URL = "https://jsonplaceholder.typicode.com/posts";
 
 type BoldedOption = {
-  label: JSX.Element; // JSX to render the bolded option label
-  value: string; // The original value
+  label: JSX.Element;
+  value: string;
 };
 
 const useScheduledService = () => {
@@ -18,7 +18,6 @@ const useScheduledService = () => {
     "Add Reasons for Monitoring",
   ];
 
-  // Map options to bold part after "Add"
   const boldedOptions: BoldedOption[] = options.map((option) => {
     const parts = option.split("Add ");
     return {
