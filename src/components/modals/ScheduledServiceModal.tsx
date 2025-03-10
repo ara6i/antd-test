@@ -20,18 +20,6 @@ const ScheduledServiceModal: React.FC = () => {
     await sendDataToBackend();
     setIsModalOpen(false);
   };
-  const boldedOptions = options.map((option) => {
-    const parts = option.split("Add ");
-    return {
-      label: (
-        <>
-          Add
-          <span style={{ fontWeight: "bold" }}> {parts[1]}</span>
-        </>
-      ),
-      value: option,
-    };
-  });
 
   return (
     <Flex justify="center" align="center" style={{ height: "100vh" }}>
@@ -72,7 +60,7 @@ const ScheduledServiceModal: React.FC = () => {
         {/* Checkboxes - Column Layout */}
         <Flex vertical gap="middle" style={{ marginTop: 30 }}>
           <Checkbox.Group
-            options={boldedOptions}
+            options={options}
             value={checkedList}
             onChange={handleCheck}
             style={{ display: "flex", flexDirection: "column", gap: "10px" }}
