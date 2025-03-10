@@ -34,7 +34,7 @@ const useScheduledService = () => {
 
   const sendDataToBackend = async () => {
     if (checkedList.length === 0) {
-      warning(); // Show warning if no options are selected
+      warning(); 
       return;
     }
 
@@ -46,9 +46,9 @@ const useScheduledService = () => {
         { headers: { "Content-Type": "application/json" } }
       );
 
-      success(); // Show success message
+      success(); 
       console.log("Response:", response.data);
-      setCheckedList([]); // Reset checked list
+      setCheckedList([]); 
     } catch (error) {
       console.error("Error:", error);
     } finally {
