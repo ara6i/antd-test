@@ -13,13 +13,26 @@ const ScheduledServiceModal: React.FC = () => {
     selectAll,
     sendDataToBackend,
     loading,
-    boldedOptions,
+    options,
   } = useScheduledService();
 
   const handleAddData = async () => {
     await sendDataToBackend();
     setIsModalOpen(false);
   };
+
+  const boldedOptions = options.map((option) => {
+    const parts = option.split("Add ");
+    return {
+      label: (
+        <>
+          Add
+          <span style={{ fontWeight: "bold" }}> {parts[1]}</span>
+        </>
+      ),
+      value: option,
+    };
+  });
 
   return (
     <Flex justify="center" align="center" style={{ height: "100vh" }}>

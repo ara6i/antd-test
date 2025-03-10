@@ -1,13 +1,8 @@
-import { JSX, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify"; // Import toast from react-toastify
 
 const API_URL = "https://jsonplaceholder.typicode.com/posts";
-
-type BoldedOption = {
-  label: JSX.Element;
-  value: string;
-};
 
 interface UseScheduledServiceReturn {
   checkedList: string[];
@@ -16,7 +11,6 @@ interface UseScheduledServiceReturn {
   sendDataToBackend: () => Promise<void>;
   loading: boolean;
   options: string[];
-  boldedOptions: BoldedOption[];
 }
 
 const useScheduledService = (): UseScheduledServiceReturn => {
@@ -27,19 +21,6 @@ const useScheduledService = (): UseScheduledServiceReturn => {
     "Add Reasons for Failure",
     "Add Reasons for Monitoring",
   ];
-
-  const boldedOptions: BoldedOption[] = options.map((option) => {
-    const parts = option.split("Add ");
-    return {
-      label: (
-        <>
-          Add
-          <span style={{ fontWeight: "bold" }}> {parts[1]}</span>
-        </>
-      ),
-      value: option,
-    };
-  });
 
   const [checkedList, setCheckedList] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
@@ -91,7 +72,6 @@ const useScheduledService = (): UseScheduledServiceReturn => {
     sendDataToBackend,
     loading,
     options,
-    boldedOptions,
   };
 };
 
