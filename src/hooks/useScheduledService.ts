@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { message } from "antd";
+import { toast } from "react-toastify"; // Import toast from react-toastify
 
 const API_URL = "https://jsonplaceholder.typicode.com/posts";
 
@@ -15,7 +15,14 @@ const useScheduledService = () => {
 
   const [checkedList, setCheckedList] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
-  const [messageApi, contextHolder] = message.useMessage();
+
+  const success = () => {
+    toast.success("Data successfully sent! ✅");
+  };
+
+  const warning = () => {
+    toast.warn("Please select at least one option ⚠️");
+  };
 
   const handleCheck = (checkedValues: string[]) => {
     setCheckedList(checkedValues);
@@ -27,7 +34,7 @@ const useScheduledService = () => {
 
   const sendDataToBackend = async () => {
     if (checkedList.length === 0) {
-      messageApi.warning("Please select at least one option ⚠️");
+      warning(); // Show warning if no options are selected
       return;
     }
 
@@ -39,11 +46,10 @@ const useScheduledService = () => {
         { headers: { "Content-Type": "application/json" } }
       );
 
-      messageApi.success("Data successfully sent! ✅");
+      success(); // Show success message
       console.log("Response:", response.data);
-      setCheckedList([]);
+      setCheckedList([]); // Reset checked list
     } catch (error) {
-      messageApi.error("Error sending data ❌");
       console.error("Error:", error);
     } finally {
       setLoading(false);
@@ -57,7 +63,6 @@ const useScheduledService = () => {
     sendDataToBackend,
     loading,
     options,
-    contextHolder,
   };
 };
 
