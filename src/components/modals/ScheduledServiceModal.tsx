@@ -20,7 +20,6 @@ const ScheduledServiceModal: React.FC = () => {
     await sendDataToBackend();
     setIsModalOpen(false);
   };
-
   const boldedOptions = options.map((option) => {
     const parts = option.split("Add ");
     return {
