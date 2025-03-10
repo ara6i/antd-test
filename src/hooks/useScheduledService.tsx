@@ -9,7 +9,17 @@ type BoldedOption = {
   value: string;
 };
 
-const useScheduledService = () => {
+interface UseScheduledServiceReturn {
+  checkedList: string[];
+  handleCheck: (checkedValues: string[]) => void;
+  selectAll: () => void;
+  sendDataToBackend: () => Promise<void>;
+  loading: boolean;
+  options: string[];
+  boldedOptions: BoldedOption[];
+}
+
+const useScheduledService = (): UseScheduledServiceReturn => {
   const options = [
     "Add Task Types",
     "Add SubTask Types",
